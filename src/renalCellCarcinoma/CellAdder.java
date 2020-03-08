@@ -178,7 +178,10 @@ public class  CellAdder implements GridAdder<Cell> {
 		Iterator<Cell> iterator = destination.getObjects().iterator();
 		Iterable<Cell> iter = () -> iterator;
 		Stream<Cell> stream = StreamSupport.stream(iter.spliterator(), false);
-		TumourCell ct = (TumourCell) stream.filter(x -> x instanceof TumourCell).findAny().get();
+		TumourCell ct = (TumourCell) stream.filter(x -> x instanceof TumourCell).findAny().orElseGet(() -> null);
+		if(ct == null) {
+			return;
+		}
 		do {
 			int x = destination.getLocation(ct).getX();
 			int y = destination.getLocation(ct).getY();

@@ -13,6 +13,7 @@ import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.ScheduleParameters;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.RandomCartesianAdder;
 import repast.simphony.space.grid.Grid;
@@ -60,14 +61,24 @@ public class RenalCellCarcinoma implements ContextBuilder<Cell>{
 		Grid<Cell> grid = gridFactory.createGrid("space", context, param);	
 		
 		this.grid = grid;
+		Parameters parameters = RunEnvironment.getInstance().getParameters();
+		double BMI = parameters.getDouble("BMI");
+		//System.out.println(BMI);
 		/*for(int i = 0; i < 40; i++) {
 			adder.fat(context, space);
 		}*/
 		/*for(int i = 0; i < 50; i++) {
 			context.add(new Blood(space));
 		}*/
-		adder.cancer(context, grid);
+		
+		
+		//adder.cancer(context, grid);
+		
+		
+		
 		adder.fat(context, grid);
+		
+		
 		adder.bloodVessels(context, grid);
 		
 		for(int i = 0; i < 7; i++) {
